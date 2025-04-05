@@ -1,0 +1,22 @@
+<div class="employee-form">
+
+    <h2>{{ isEditMode ? 'Edit Employee' : 'Add Employee' }}</h2>
+
+    <form (ngSubmit)="submitForm()" #employeeForm="ngForm">
+
+        <input type="text" [(ngModel)]="name" name="name" placeholder="Name" required />
+
+        <input type="text" [(ngModel)]="designation" name="designation" placeholder="Designation" required />
+
+        <input type="number" [(ngModel)]="experience" name="experience" placeholder="Experience (in years)" required
+            min="0" />
+
+        <button type="submit" [disabled]="!employeeForm.valid" [class.disabled]="!employeeForm.valid">
+
+            {{ isEditMode ? 'Update' : 'Add' }} Employee
+
+        </button>
+
+    </form>
+
+</div>

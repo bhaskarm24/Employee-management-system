@@ -1,0 +1,70 @@
+<div class="employee-list">
+
+    <h2>Employee List</h2>
+
+    <!-- Filters -->
+
+    <div class="filters">
+
+        <input type="text" placeholder="Search..." [(ngModel)]="searchTerm" (input)="applyFilters()" />
+
+        <select [(ngModel)]="selectedDesignation" (change)="applyFilters()">
+
+            <option value="">All Designations</option>
+
+            <option *ngFor="let des of designations" [value]="des">{{ des }}</option>
+
+        </select>
+
+        <select [(ngModel)]="sortOption" (change)="applyFilters()">
+
+            <option value="">Sort By</option>
+
+            <option value="name">Name</option>
+
+            <option value="experience">Experience</option>
+
+        </select>
+
+    </div>
+
+    <!-- Employee Cards -->
+
+    <div *ngIf="paginatedEmployees.length === 0">
+
+        No employees found.
+
+    </div>
+
+    <div *ngFor="let emp of paginatedEmployees" class="employee-card">
+
+        <h3>{{ emp.name }}</h3>
+
+        <p><strong>Designation:</strong> {{ emp.designation }}</p>
+
+        <p><strong>Experience:</strong> {{ emp.experience }} years</p>
+
+        <button [routerLink]="['/dashboard/edit', emp.id]">Edit</button>
+
+        <button (click)="deleteEmployee(emp.id!.toString())">Delete</button>
+
+    </div>
+
+    <!-- Pagination Controls -->
+
+    <div class="pagination" *ngIf="totalPages > 1">
+
+        <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+
+        <button *ngFor="let page of [].constructor(totalPages); let i = index" (click)="goToPage(i + 1)"
+            [class.active]="currentPage === i + 1">
+
+            {{ i + 1 }}
+
+        </button>
+
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+
+    </div>
+
+</div>

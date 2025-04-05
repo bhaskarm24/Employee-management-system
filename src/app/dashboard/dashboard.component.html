@@ -1,0 +1,35 @@
+<div class="dashboard-layout">
+
+    <aside class="sidebar">
+
+        <h3>Employee Panel</h3>
+
+        <ul>
+
+            <li><a routerLink="/dashboard/employees" routerLinkActive="active">Employee List</a></li>
+
+            <li><a routerLink="/dashboard/add" routerLinkActive="active">Add Employee</a></li>
+
+        </ul>
+
+    </aside>
+
+    <div class="main-content">
+
+        <header class="navbar">
+
+            <h2>Dashboard</h2>
+
+            <button (click)="logout()">Logout</button>
+
+        </header>
+
+        <section class="content">
+
+            <router-outlet></router-outlet>
+
+        </section>
+
+    </div>
+
+</div>
